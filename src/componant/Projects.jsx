@@ -14,7 +14,7 @@ const projects = [
       "Developed a robust backend with RESTful APIs for product management.",
     ],
     image: "src/assets/mart.png",
-    githubLink: "https://github.com/AbhishekRajput1601/resume",
+    githubLink: "https://github.com/AbhishekRajput1601/BinkeyIt",
   },
   {
     title: "InterviewME",
@@ -27,7 +27,7 @@ const projects = [
       "Designed a responsive UI with Next.js and Tailwind CSS.",
     ],
     image: "src/assets/interview.png",
-    githubLink: "https://github.com/AbhishekRajput1601/resume",
+    githubLink: "https://github.com/AbhishekRajput1601/Ai-Interview-Mocker",
   },
   {
     title: "Book-Hive",
@@ -39,7 +39,7 @@ const projects = [
       "Implemented user authentication and role-based access control.",
     ],
     image: "src/assets/lib.png",
-    githubLink: "https://github.com/AbhishekRajput1601/resume",
+    githubLink: "https://github.com/AbhishekRajput1601/Ed-Tech",
   },
   {
     title: "JobNest",
@@ -51,7 +51,7 @@ const projects = [
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
     image: "src/assets/job.png",
-    githubLink: "https://github.com/AbhishekRajput1601/resume",
+    githubLink: "https://github.com/AbhishekRajput1601/JonNest",
   },
   {
     title: "ChatWise",
@@ -63,7 +63,7 @@ const projects = [
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
     image: "src/assets/chatwise.png",
-    githubLink: "https://github.com/AbhishekRajput1601/resume",
+    githubLink: "https://github.com/AbhishekRajput1601/AiChatBot",
   },
   {
     title: "My Portfolio",
