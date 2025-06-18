@@ -11,7 +11,7 @@ function About() {
       >
         {/* Left Side - Text */}
         <div className="md:w-1/2 text-justify">
-          <p className="text-xl font-medium leading-7 mb-2">
+          <p className="text-xl font-medium leading-7 ">
             As a passionate and driven individual, I am eager to transition into
             a career as a software development engineer. My love for coding and
             web development fuels my continuous learning and growth in the tech
@@ -31,7 +31,7 @@ function About() {
           <img
             src="src/assets/gibli-Photoroom.png" // Replace with your actual image path
             alt="Abhishek Rajput"
-            className="w-120 h-120 object-cover"
+            className="w-120 h-120 object-cover mt-2"
           />
         </div>
       </div>

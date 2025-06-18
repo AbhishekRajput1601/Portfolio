@@ -1,4 +1,6 @@
-import React from "react";
+import ProjectCard from "./ProjectCard"; 
+import { useEffect, useState } from "react";
+
 
 const projects = [
   {
@@ -8,8 +10,11 @@ const projects = [
     description: [
       "scalable e-Commerce central platform for groceries and other Products.",
       "Designed a user-friendly interface client and seller.",
+      "Implemented secure payment gateway integration.",
+      "Developed a robust backend with RESTful APIs for product management.",
     ],
     image: "src/assets/mart.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
   {
     title: "InterviewME",
@@ -18,8 +23,11 @@ const projects = [
     description: [
       "Developed a smart interview preparation platform with AI integration.",
       "Integrated Google Gemini API for real-time AI-driven interview sessions.",
+      "Implemented user authentication and role-based access control using ClerkAuth.",
+      "Designed a responsive UI with Next.js and Tailwind CSS.",
     ],
     image: "src/assets/interview.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
   {
     title: "Book-Hive",
@@ -28,8 +36,10 @@ const projects = [
     description: [
       "Built a library management system for book search, borrowing, and returning.",
       "Managed inventory efficiently using backend RestFull APIs.",
+      "Implemented user authentication and role-based access control.",
     ],
     image: "src/assets/lib.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
   {
     title: "JobNest",
@@ -38,8 +48,10 @@ const projects = [
     description: [
       "job search portal with filtering, resume upload, and employer dashboard.",
       "Implemented authentication and applied RESTful architecture principles.",
+      "Designed a responsive UI with React and Tailwind CSS.",
     ],
     image: "src/assets/job.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
   {
     title: "ChatWise",
@@ -48,55 +60,78 @@ const projects = [
     description: [
       "real-time chat application with room-based messaging using Socket.IO.",
       "Integrated Google Gemini API for AI-driven chat responses.",
+      "Designed a responsive UI with React and Tailwind CSS.",
     ],
     image: "src/assets/chatwise.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
   {
     title: "My Portfolio",
     tech: "React, Tailwind CSS",
     period: "May 2024",
     description: [
-      "Designed a personal portfolio to showcase my skills and projects.",
+      "Designed a personal portfolio to showcase my skills and projects.",  
       " modern UI with smooth scrolling, and contact form integration.",
+      "Utilized React for dynamic content rendering and Tailwind CSS for styling."
     ],
     image: "src/assets/portfolio.png",
+    githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
 ];
 
 function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+  if (selectedProject) {
+    document.body.classList.add("overflow-hidden");
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  // Clean up when component unmounts
+  return () => {
+    document.body.classList.remove("overflow-hidden");
+  };
+}, [selectedProject]);
+
+
   return (
     <div className="pt-32 px-6 md:px-20 text-gray-800">
       <h1 className="text-4xl font-bold mb-20 text-center">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-lg overflow-hidden 
-            hover:shadow-lg transition-shadow duration-300"
+            onClick={() => setSelectedProject(project)}
+            className="cursor-pointer bg-white rounded-lg shadow-lg 
+            overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-82 object-fill"
+              className="w-full h-64 object-cover"
             />
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-1">
                 {project.title}
               </h2>
               <p className="text-md text-black mb-2">{project.tech}</p>
-              <p className="text-md font-bold text-gray-500  mb-4">
+              <p className="text-md font-bold text-gray-500 mb-4">
                 {project.period}
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1">
-                {project.description.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modal ProjectCard */}
+      {selectedProject && (
+        <ProjectCard
+          {...selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </div>
   );
 }
