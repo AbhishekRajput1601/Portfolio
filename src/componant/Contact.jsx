@@ -8,13 +8,13 @@ function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+    // console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
     emailjs
       .sendForm(
-        "service_cmoibpd", // Your EmailJS Service ID
-        "template_wzzhlig", // Your Template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, // Your EmailJS Service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // Your Template ID
         form.current,
-        "WJNXNYWVVU69OTCWt" // Your Public Key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // Your Public Key
       )
       .then(
         (result) => {
