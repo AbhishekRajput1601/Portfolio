@@ -1,8 +1,9 @@
 import ProjectCard from "./ProjectCard"; 
 import { useEffect, useState } from "react";
+import { uploadToCloudinary } from "../utils/cloudinary";
 
 
-const projects = [
+const initialProjects = [
   {
     title: "Quick-Mart",
     tech: "React, Node.js, Express.js, MongoDB",
@@ -13,7 +14,7 @@ const projects = [
       "Implemented secure payment gateway integration.",
       "Developed a robust backend with RESTful APIs for product management.",
     ],
-    image: "src/assets/mart.png",
+  image: "src/assets/mart.png",
     githubLink: "https://github.com/AbhishekRajput1601/BinkeyIt",
   },
   {
@@ -26,7 +27,7 @@ const projects = [
       "Implemented user authentication and role-based access control using ClerkAuth.",
       "Designed a responsive UI with Next.js and Tailwind CSS.",
     ],
-    image: "src/assets/interview.png",
+  image: "src/assets/interview.png",
     githubLink: "https://github.com/AbhishekRajput1601/Ai-Interview-Mocker",
   },
   {
@@ -38,7 +39,7 @@ const projects = [
       "Managed inventory efficiently using backend RestFull APIs.",
       "Implemented user authentication and role-based access control.",
     ],
-    image: "src/assets/lib.png",
+  image: "src/assets/lib.png",
     githubLink: "https://github.com/AbhishekRajput1601/Ed-Tech",
   },
   {
@@ -50,7 +51,7 @@ const projects = [
       "Implemented authentication and applied RESTful architecture principles.",
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
-    image: "src/assets/job.png",
+  image: "src/assets/job.png",
     githubLink: "https://github.com/AbhishekRajput1601/JonNest",
   },
   {
@@ -62,7 +63,7 @@ const projects = [
       "Integrated Google Gemini API for AI-driven chat responses.",
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
-    image: "src/assets/chatwise.png",
+  image: "src/assets/chatwise.png",
     githubLink: "https://github.com/AbhishekRajput1601/AiChatBot",
   },
   {
@@ -74,66 +75,74 @@ const projects = [
       " modern UI with smooth scrolling, and contact form integration.",
       "Utilized React for dynamic content rendering and Tailwind CSS for styling."
     ],
-    image: "src/assets/portfolio.png",
+  image: "src/assets/portfolio.png",
     githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
 ];
 
-function Projects() {
+
+export default function Projects() {
+  const [projects, setProjects] = useState(initialProjects);
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
-  if (selectedProject) {
-    document.body.classList.add("overflow-hidden");
-  } else {
-    document.body.classList.remove("overflow-hidden");
-  }
-
-  // Clean up when component unmounts
-  return () => {
-    document.body.classList.remove("overflow-hidden");
-  };
-}, [selectedProject]);
-
+    async function uploadImages() {
+      const updatedProjects = await Promise.all(
+        projects.map(async (project) => {
+          // Only upload if not already a Cloudinary URL
+          if (project.image && !project.image.startsWith('https://res.cloudinary.com')) {
+            try {
+              const imgModule = await import(`../assets/${project.image.split('/').pop()}`);
+              const file = await fetch(imgModule.default).then(r => r.blob());
+              const url = await uploadToCloudinary(file);
+              return { ...project, image: url };
+            } catch (e) {
+              return project;
+            }
+          }
+          return project;
+        })
+      );
+      setProjects(updatedProjects);
+    }
+    uploadImages();
+    // eslint-disable-next-line
+  }, []);
 
   return (
-    <div className="pt-32 px-6 md:px-20 text-gray-800">
-      <h1 className="text-4xl font-bold mb-20 text-center">Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedProject(project)}
-            className="cursor-pointer bg-white rounded-lg shadow-lg 
-            overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-1">
-                {project.title}
-              </h2>
-              <p className="text-md text-black mb-2">{project.tech}</p>
-              <p className="text-md font-bold text-gray-500 mb-4">
-                {project.period}
-              </p>
+    <section id="projects" className="py-20 bg-gray-100">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold mb-12 text-center">Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg shadow-lg p-6 cursor-pointer hover:scale-105 transition"
+              onClick={() => setSelectedProject(project)}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover rounded-md mb-4"
+              />
+              <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-gray-600 mb-2">{project.tech}</p>
+              <p className="text-gray-500 mb-2">{project.period}</p>
+              <ul className="list-disc pl-5 mb-4">
+                {project.description.map((desc, i) => (
+                  <li key={i}>{desc}</li>
+                ))}
+              </ul>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        {selectedProject && (
+          <ProjectCard
+            {...selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
-
-      {/* Modal ProjectCard */}
-      {selectedProject && (
-        <ProjectCard
-          {...selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
-    </div>
+    </section>
   );
 }
-
-export default Projects;
