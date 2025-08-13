@@ -67,7 +67,7 @@ function Home() {
         {/* Right Side */}
         <div className="mt-16 mr-10 md:mr-40 flex justify-center">
           <img
-            src="src/assets/gibli-Photoroom.png"
+            src="public/gibli-Photoroom.png"
             alt="Profile"
             className="w-120 h-120 object-cover"
           />

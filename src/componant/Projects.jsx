@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard"; 
 import { useEffect, useState } from "react";
-import { uploadToCloudinary } from "../utils/cloudinary";
+
 
 
 const initialProjects = [
@@ -14,7 +14,7 @@ const initialProjects = [
       "Implemented secure payment gateway integration.",
       "Developed a robust backend with RESTful APIs for product management.",
     ],
-  image: "src/assets/mart.png",
+  image: "/mart.png",
     githubLink: "https://github.com/AbhishekRajput1601/BinkeyIt",
   },
   {
@@ -27,7 +27,7 @@ const initialProjects = [
       "Implemented user authentication and role-based access control using ClerkAuth.",
       "Designed a responsive UI with Next.js and Tailwind CSS.",
     ],
-  image: "src/assets/interview.png",
+  image: "/interview.png",
     githubLink: "https://github.com/AbhishekRajput1601/Ai-Interview-Mocker",
   },
   {
@@ -39,7 +39,7 @@ const initialProjects = [
       "Managed inventory efficiently using backend RestFull APIs.",
       "Implemented user authentication and role-based access control.",
     ],
-  image: "src/assets/lib.png",
+  image: "/lib.png",
     githubLink: "https://github.com/AbhishekRajput1601/Ed-Tech",
   },
   {
@@ -51,7 +51,7 @@ const initialProjects = [
       "Implemented authentication and applied RESTful architecture principles.",
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
-  image: "src/assets/job.png",
+  image: "/job.png",
     githubLink: "https://github.com/AbhishekRajput1601/JonNest",
   },
   {
@@ -63,7 +63,7 @@ const initialProjects = [
       "Integrated Google Gemini API for AI-driven chat responses.",
       "Designed a responsive UI with React and Tailwind CSS.",
     ],
-  image: "src/assets/chatwise.png",
+  image: "/chatwise.png",
     githubLink: "https://github.com/AbhishekRajput1601/AiChatBot",
   },
   {
@@ -75,7 +75,7 @@ const initialProjects = [
       " modern UI with smooth scrolling, and contact form integration.",
       "Utilized React for dynamic content rendering and Tailwind CSS for styling."
     ],
-  image: "src/assets/portfolio.png",
+  image: "/portfolio.png",
     githubLink: "https://github.com/AbhishekRajput1601/resume",
   },
 ];
@@ -85,29 +85,7 @@ export default function Projects() {
   const [projects, setProjects] = useState(initialProjects);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  useEffect(() => {
-    async function uploadImages() {
-      const updatedProjects = await Promise.all(
-        projects.map(async (project) => {
-          // Only upload if not already a Cloudinary URL
-          if (project.image && !project.image.startsWith('https://res.cloudinary.com')) {
-            try {
-              const imgModule = await import(`../assets/${project.image.split('/').pop()}`);
-              const file = await fetch(imgModule.default).then(r => r.blob());
-              const url = await uploadToCloudinary(file);
-              return { ...project, image: url };
-            } catch (e) {
-              return project;
-            }
-          }
-          return project;
-        })
-      );
-      setProjects(updatedProjects);
-    }
-    uploadImages();
-    // eslint-disable-next-line
-  }, []);
+
 
   return (
     <section id="projects" className="py-20 bg-gray-100">
