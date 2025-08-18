@@ -30,21 +30,9 @@ function Skills() {
     </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {skills.map((skill) => (
-          <div key={skill.name} className="bg-white rounded-xl shadow-lg p-5 flex
-          items-center space-x-4">
+          <div key={skill.name} className="bg-white rounded-xl shadow-lg p-5 flex items-center space-x-4">
             <div className="text-4xl text-black">{skill.icon}</div>
-            <div className="w-full">
-              <div className="flex justify-between mb-1">
-                <span className="font-semibold text-black">{skill.name}</span>
-                <span className="text-sm text-black">{skill.level}%</span>
-              </div>
-              <div className="w-full bg-white shadow-lg rounded-full h-3">
-                <div
-                  className="bg-gray-600 h-3 shadow-lg rounded-full"
-                  style={{ width: `${skill.level}%` }}
-                ></div>
-              </div>
-            </div>
+            <span className="font-semibold text-black text-xl">{skill.name}</span>
           </div>
         ))}
       </div>
