@@ -8,13 +8,12 @@ function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    // console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
     emailjs
       .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID, // Your EmailJS Service ID
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // Your Template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // Your Public Key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         (result) => {
@@ -29,51 +28,49 @@ function Contact() {
   };
 
   return (
-    <div className="pt-32 mt-18 px-6 bg-white text-gray-800">
-      <h1 className="text-4xl font-bold mb-16 text-center text-gray-900">
-        Get in Touch
-      </h1>
+    <section className="px-6 py-32 bg-gray-50 text-gray-800">
+      <div className="max-w-5xl mx-auto text-center mb-14">
+        <h1 className="text-4xl font-bold text-gray-900">Get in Touch</h1>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
         {/* Contact Info */}
-        <div className="space-y-10">
-          <div className="flex items-start space-x-5 border-b pb-6">
-            <FaEnvelope className="text-3xl text-gray-700 mt-1" />
+        <div className="space-y-9 text-left text-base ml-8 mt-12">
+          <div className="flex items-start space-x-4">
+            <FaEnvelope className="text-2xl text-gray-700 mt-1" />
             <div>
-              <h3 className="text-lg font-semibold">Email</h3>
-              <p className="text-gray-600 font-bold">
-                {" "}
-                abhirajputofficial2000@gmail.com{" "}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start space-x-5 border-b pb-6">
-            <FaPhone className="text-3xl text-gray-700 mt-1" />
-            <div>
-              <h3 className="text-lg font-semibold">Phone</h3>
-              <p className="text-gray-600 font-bold">+91 6260354447 </p>{" "}
-              {/* Replace with your actual number */}
+              <h3 className="font-semibold">Email</h3>
+              <p className="text-gray-600 font-medium">abhirajputofficial2000@gmail.com</p>
             </div>
           </div>
 
-          <div className="flex items-start space-x-5 border-b pb-6">
-            <FaMapMarkerAlt className="text-3xl text-gray-700 mt-1" />
+          <div className="flex items-start space-x-4">
+            <FaPhone className="text-2xl text-gray-700 mt-1" />
             <div>
-              <h3 className="text-lg font-semibold">Location</h3>
-              <p className="text-gray-600 font-bold">Indore, India</p>
+              <h3 className="font-semibold">Phone</h3>
+              <p className="text-gray-600 font-medium">+91 6260354447</p>
             </div>
           </div>
-          <div className="flex items-start space-x-5">
-            <FaLinkedin className="text-3xl text-gray-700 mt-1" />
+
+          <div className="flex items-start space-x-4">
+            <FaMapMarkerAlt className="text-2xl text-gray-700 mt-1" />
             <div>
-              <h3 className="text-lg font-semibold">LinkedIn</h3>
+              <h3 className="font-semibold">Location</h3>
+              <p className="text-gray-600 font-medium">Indore, India</p>
+            </div>
+          </div>
+
+          <div className="flex items-start space-x-4">
+            <FaLinkedin className="text-2xl text-gray-700 mt-1" />
+            <div>
+              <h3 className="font-semibold">LinkedIn</h3>
               <a
                 href="https://www.linkedin.com/in/abhishek-rajput-706321287/"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:underline font-bold"
+                className="hover:underline font-medium"
               >
-              Click here to connect on LinkedIn 
+                Connect on LinkedIn
               </a>
             </div>
           </div>
@@ -83,51 +80,42 @@ function Contact() {
         <form
           ref={form}
           onSubmit={sendEmail}
-          className="bg-gray-100 p-10 shadow-md text-black space-y-6 rounded-md "
+          className="bg-white p-8 shadow-lg text-base text-black space-y-5 rounded-lg"
         >
           <div>
-            <label className="block text-md font-bold mb-1">Name</label>
+            <label className="block font-semibold mb-1">Name</label>
             <input
               type="text"
               name="user_name"
               required
-              className="w-full border border-black px-4 py-3 font-medium rounded-md 
-              focus:ring-2 focus:ring-black outline-none"
+              className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-black outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-md font-bold mb-1">Email</label>
+            <label className="block font-semibold mb-1">Email</label>
             <input
               type="email"
               name="user_email"
               required
-              className="w-full border border-black px-4 py-3 font-medium rounded-md 
-              focus:ring-2 focus:ring-black outline-none"
+              className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-black outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-md font-bold mb-1">Message</label>
+            <label className="block font-semibold mb-1">Message</label>
             <textarea
               name="message"
               required
-              className="w-full border border-black px-4 py-3 font-medium rounded-md 
-              h-32 resize-none focus:ring-2 focus:ring-black outline-none"
+              className="w-full border px-4 py-3 rounded-md h-28 resize-none focus:ring-2 focus:ring-black outline-none"
             />
           </div>
 
-          {/* Add a hidden field for time */}
-          <input
-            type="hidden"
-            name="time"
-            value={new Date().toLocaleString()}
-          />
+          <input type="hidden" name="time" value={new Date().toLocaleString()} />
 
           <button
             type="submit"
-            className="w-full bg-gray-800 text-white py-3 rounded-md 
-            font-semibold hover:bg-gray-900 transition"
+            className="w-full bg-gray-800 text-white py-3 rounded-md font-medium hover:bg-gray-900 transition"
           >
             Send Message
           </button>
@@ -139,7 +127,7 @@ function Contact() {
           )}
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 

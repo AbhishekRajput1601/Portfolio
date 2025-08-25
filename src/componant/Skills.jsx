@@ -5,38 +5,42 @@ import {
 import { DiJava } from "react-icons/di";
 
 const skills = [
-    { name: "Java", icon: <DiJava />, level: 80 },
-    { name: "HTML", icon: <SiHtml5 />, level: 90 },
-    { name: "CSS", icon: <SiCss3 />, level: 90 },
-    { name: "JavaScript", icon: <SiJavascript />, level: 90 },
-    { name: "React", icon: <SiReact />, level: 85 },
-    { name: "Express.js", icon: <SiExpress />, level: 80 },
-    { name: "Node.js", icon: <SiNodedotjs />, level: 80 },
-    { name: "MongoDB", icon: <SiMongodb />, level: 75 },
-    { name: "TypeScript", icon: <SiTypescript />, level: 70 },
-    { name: "Next.js", icon: <SiNextdotjs />, level: 75 },
-    { name: "PostgreSQL", icon: <SiPostgresql />, level: 70 },
-    { name: "Prisma", icon: <SiPrisma />, level: 70 },
-    { name: "Git", icon: <SiGit />, level: 80 },
-    { name: "Docker", icon: <SiDocker />, level: 60 },
-    { name: "Postman", icon: <SiPostman />, level: 75 }
+  { name: "Java", icon: <DiJava /> },
+  { name: "HTML", icon: <SiHtml5 /> },
+  { name: "CSS", icon: <SiCss3 /> },
+  { name: "JavaScript", icon: <SiJavascript /> },
+  { name: "React", icon: <SiReact /> },
+  { name: "Express.js", icon: <SiExpress /> },
+  { name: "Node.js", icon: <SiNodedotjs /> },
+  { name: "MongoDB", icon: <SiMongodb /> },
+  { name: "TypeScript", icon: <SiTypescript /> },
+  { name: "Next.js", icon: <SiNextdotjs /> },
+  { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "Prisma", icon: <SiPrisma /> },
+  { name: "Git", icon: <SiGit /> },
+  { name: "Docker", icon: <SiDocker /> },
+  { name: "Postman", icon: <SiPostman /> }
 ];
 
 function Skills() {
   return (
-    <div className="min-h-screen px-8 py-32 bg-while">
-    <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">My Skills</h2>
-    </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skills.map((skill) => (
-          <div key={skill.name} className="bg-white rounded-xl shadow-lg p-5 flex items-center space-x-4">
-            <div className="text-4xl text-black">{skill.icon}</div>
-            <span className="font-semibold text-black text-xl">{skill.name}</span>
-          </div>
-        ))}
+    <section className="min-h-screen px-6 py-45 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-16 text-gray-800">My Skills</h2>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9">
+          {skills.map((skill) => (
+            <div
+              key={skill.name}
+              className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition duration-300"
+            >
+              <div className="text-3xl mb-2 text-black">{skill.icon}</div>
+              <h3 className="text-sm font-medium text-gray-800">{skill.name}</h3>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

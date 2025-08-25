@@ -27,11 +27,11 @@ function About() {
         </div>
 
         {/* Right Side - Image */}
-        <div className=" flex justify-center">
+        <div className="flex justify-center -mt-8">
           <img
             src="/gibli-Photoroom.png" // Replace with your actual image path
             alt="Abhishek Rajput"
-            className="w-120 h-120 object-cover mt-2"
+            className="w-120 h-120 object-cover p-2"
           />
         </div>
       </div>
